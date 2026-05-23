@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: module2
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_0001
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+#        dialect: org.hibernate.dialect.MySQLDialect -> explicit mention is redundant
+        format_sql: true
+    show-sql: true
