@@ -1,6 +1,9 @@
 server:
   port: 8081
 
+jwt:
+  secretKey: sdnvnfdreognovnfvkmrp23-05930vdjvn5903fnvfdnvjnbr2r3
+
 spring:
   application:
     name: SpringDataJPA
@@ -14,7 +17,17 @@ spring:
       ddl-auto: update
     defer-datasource-initialization: true
     show-sql: true
-#  sql:
-#    init:
-#      mode: always
+#    sql:
+#      init:
+#        mode: always
 
+  security:
+    user:
+      name: atharva
+      password: pass
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE

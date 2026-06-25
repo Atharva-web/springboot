@@ -3,6 +3,7 @@ package com.atharva.SecurityApp.config;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 
 @Configuration
 public class AppConfig {
@@ -11,4 +12,5 @@ public class AppConfig {
     ModelMapper getModelMapper() {
         return new ModelMapper();
     }
+
 }

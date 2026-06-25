@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service @RequiredArgsConstructor
-public class PostServiceImpl implements PostService{
+@Service
+@RequiredArgsConstructor
+public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
