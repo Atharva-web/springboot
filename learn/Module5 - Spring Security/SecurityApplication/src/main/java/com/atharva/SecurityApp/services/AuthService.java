@@ -66,11 +66,18 @@ public class AuthService {
 //            }
 //        }
 
+        System.out.println("sending email and password for auth");
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())
         );
 
+        System.out.println("Authenticated.");
+        System.out.println("reading user entity");
+
         UserEntity userEntity = (UserEntity) authentication.getPrincipal();
+
+        System.out.println("obtained the current user entity");
         return jwtService.generateToken(userEntity);
     }
 }

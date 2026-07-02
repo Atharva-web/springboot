@@ -4,6 +4,9 @@ import com.atharva.SecurityApp.dto.LoginDto;
 import com.atharva.SecurityApp.dto.SignupDto;
 import com.atharva.SecurityApp.dto.UserDto;
 import com.atharva.SecurityApp.services.AuthService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +26,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
-        return ResponseEntity.ok(authService.login(loginDto));
+    public ResponseEntity<String> login(@RequestBody LoginDto loginDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        System.out.println("Entering login...");
+
+        Cookie cookie = new Cookie("jwt-cookie", authService.login(loginDto));
+        cookie.setHttpOnly(true);
+        httpServletResponse.addCookie(cookie);
+        return ResponseEntity.ok("👌🏼");
     }
 }
