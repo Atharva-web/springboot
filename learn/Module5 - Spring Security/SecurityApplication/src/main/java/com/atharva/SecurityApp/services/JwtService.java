@@ -28,7 +28,7 @@ public class JwtService {
                 .claim("email", userEntity.getEmail())
                 .claim("roles", Set.of("ADMIN", "USER"))
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000*60))
+                .expiration(new Date(System.currentTimeMillis() + 10000*60))
                 .signWith(getSecretKey())
                 .compact();
     }
@@ -41,5 +41,16 @@ public class JwtService {
                 .getPayload();
 
         return Long.valueOf(claims.getSubject());
+    }
+
+    public String getUserEmailFromJwt(String jwt) {
+        Claims claims = Jwts.parser()
+                .verifyWith(getSecretKey())
+                .build()
+                .parseSignedClaims(jwt)
+                .getPayload();
+
+        // Extract the "email" field from the claims payload
+        return claims.get("email", String.class);
     }
 }

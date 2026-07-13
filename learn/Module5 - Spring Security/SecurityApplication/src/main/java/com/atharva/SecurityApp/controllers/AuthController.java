@@ -29,9 +29,13 @@ public class AuthController {
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         System.out.println("Entering login...");
 
-        Cookie cookie = new Cookie("jwt-cookie", authService.login(loginDto));
+        String jwt = authService.login(loginDto);
+        System.out.println("Token Generated.\nSetting jwt in cookie and sending back as a response...");
+
+        Cookie cookie = new Cookie("jwt-cookie", jwt);
         cookie.setHttpOnly(true);
         httpServletResponse.addCookie(cookie);
-        return ResponseEntity.ok("👌🏼");
+        
+        return ResponseEntity.ok(jwt);
     }
 }

@@ -23,4 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.findByEmail(username)
                 .orElseThrow(() -> new ResourceNotFoundException("user with email " + username + " not found"));
     }
+
+    public UserEntity getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("user with id " + userId + " not found"));
+    }
 }
